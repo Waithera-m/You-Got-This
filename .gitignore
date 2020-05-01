@@ -1,0 +1,15 @@
+#editor
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+__pyache__/
+
+instance/
+
+*.pyc
+
+start.sh
+
+virtual/
+
+.venv
