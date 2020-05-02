@@ -1,0 +1,14 @@
+.jumbotron{
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+    background: linear-gradient(to bottom, rgba(254, 254, 255, 0.6) 0%,rgba(244, 246, 247, 0.6) 100%),
+    url('https://bit.ly/3aZWiPk');
+}
+  
+@media (min-width: 480px) {
+    .jumbotron {
+      padding: 4rem 2rem;
+    }
+  }
