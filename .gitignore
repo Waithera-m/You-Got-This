@@ -3,6 +3,7 @@
 
 # Byte-compiled / optimized / DLL files
 __pyache__/
+__pyache__
 
 instance/
 

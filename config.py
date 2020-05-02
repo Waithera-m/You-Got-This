@@ -5,9 +5,9 @@ class Config:
     '''
     Class facilitates the creation of config objects
     '''
-    pass
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
-class DevConfig:
+class DevConfig(Config):
 
     '''
     Class inherits general configurations from Config class
@@ -15,7 +15,7 @@ class DevConfig:
 
     DEBUG = True
 
-class ProdConfig:
+class ProdConfig(Config):
 
     '''
     Class inherits general configurations from Config class
