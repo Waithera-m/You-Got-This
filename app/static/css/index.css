@@ -4,15 +4,22 @@
     background-color: #e9ecef;
     border-radius: 0.3rem;
     background: linear-gradient(to bottom, rgba(254, 254, 255, 0.6) 0%,rgba(244, 246, 247, 0.6) 100%),
-    url('https://bit.ly/3aZWiPk');
+    url('https://bit.ly/3f8FSHM');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    height: 550px;
+    height: 500px;
     text-align: center;
     color: rgb(3, 15, 26);
     font-size: larger;
     font-weight: bolder;
+    font-family: 'Montserrat', sans-serif;
+}
+.video {
+    padding-left: 1.8px;
+    padding-right: 1.8px;
+}
+body {
     font-family: 'Montserrat', sans-serif;
 }
   
