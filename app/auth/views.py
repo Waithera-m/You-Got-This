@@ -4,6 +4,8 @@ from ..models import User
 from .forms import UserRegistrationForm,LoginForm
 from .. import db
 from flask_login import login_user,logout_user,login_required
+from ..email import email_message
+
 
 @auth.route('/login', methods=["GET","POST"])
 def login():
@@ -46,6 +48,7 @@ def register ():
         user = User(email=form.email.data,username=form.username.data,password=form.password.data)
         db.session.add(user)
         db.session.commit()
+        email_message("Welcome to You Got This","email/welcome_user",user.email,user=user)
         return redirect(url_for('.login'))
         title="New Account"
     return render_template('auth/register.html',registration_form=form)
