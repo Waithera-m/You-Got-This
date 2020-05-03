@@ -10,6 +10,10 @@
             {% else %}
                 <h4>{{user.username}} has no bio</h4>
             {% endif %}
+
+            {% if user == current_user %}
+                <a href="{{url_for('main.edit_profile',uname=user.username)}}">Edit Profile</a>
+            {% endif %}
         </div>
         <div class="col-md-4">
             {% if user.profile_photo_path %}
