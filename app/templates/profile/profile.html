@@ -4,11 +4,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2>{{user.username|capitalize}}</h2>
+            <h3>{{user.username|upper}}</h3>
             {% if user.bio %}
-                <h4>{{user.bio}}</h4>
+                <h5>{{user.bio}}</h5>
             {% else %}
-                <h4>{{user.username}} has no bio</h4>
+                <h5>{{user.username}} has no bio</h5>
             {% endif %}
 
             {% if user == current_user %}
