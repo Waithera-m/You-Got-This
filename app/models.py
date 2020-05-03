@@ -17,6 +17,7 @@ class User(db.Model,UserMixin):
     class faciliates the creation of user objects
     '''
     __tablename__ = 'users'
+
     id = db.Column(db.Integer,primary_key=True)
     email = db.Column(db.String(255),unique=True,index=True)
     username = db.Column(db.String(255),index=True)
@@ -37,17 +38,17 @@ class User(db.Model,UserMixin):
         '''
         function generates password hash
         '''
-        self.password_secure = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password)
         
     def verify_password(self,password):
 
         '''
         function checks if entered and hashed passwords match
         '''
-        return check_password_hash(self.password_secure,password)
+        return check_password_hash(self.password_hash,password)
 
     def __repr__(self):
-        return f'User {user.username}'
+        return f'User {self.username}'
 
 class Role(db.Model):
 
