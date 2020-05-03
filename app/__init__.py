@@ -4,7 +4,11 @@ from config import config_options
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_uploads import UploadSet,configure_uploads,IMAGES
+from flask_wtf.csrf import CSRFProtect
 
+csrf = CSRFProtect()
+photos = UploadSet('photos',IMAGES)
 mail = Mail()
 
 login_manager = LoginManager()
@@ -27,11 +31,14 @@ def create_app(config_name):
     #create app configurations
     app.config.from_object(config_options[config_name])
 
+    configure_uploads(app,photos)
+
     #initialize extensions
     bootstrap.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
+    csrf.init_app(app)
 
     #initialize blueprint
     from .main import main as main_blueprint

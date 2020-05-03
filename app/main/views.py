@@ -1,8 +1,8 @@
-from flask import render_template,redirect,url_for,abort
+from flask import render_template,redirect,url_for,abort,request
 from . import main
 from ..models import User
 from .forms import EditProfile
-from .. import db
+from .. import db,photos
 from flask_login import login_required,current_user
 
 
@@ -51,3 +51,18 @@ def edit_profile(uname):
         return redirect(url_for('.profile',uname=user.username))
 
     return render_template('profile/edit.html',form=form)
+
+@main.route('/user/<uname>/update/pic', methods=["POST"])
+@login_required
+def update_pic(uname):
+
+    '''
+    view function facilitates the processing of form submission request
+    '''
+    user = User.query.filter_by(username=uname).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path=f'photos/{filename}'
+        user.profile_photo_path = path
+        db.session.commit()
+    return redirect(url_for('main.profile',uname=uname))
