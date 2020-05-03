@@ -22,6 +22,8 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(255),unique=True,index=True)
     username = db.Column(db.String(255),index=True)
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    bio = db.Column(db.String(255))
+    profile_photo_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
     
     @property
