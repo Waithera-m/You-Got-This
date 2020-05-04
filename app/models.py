@@ -26,6 +26,7 @@ class User(db.Model,UserMixin):
     bio = db.Column(db.String(255))
     profile_photo_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
+    pitches = db.relationship('Pitch',backref='user',lazy='dynamics')
     
     @property
     def password(self):
@@ -74,7 +75,25 @@ class Pitch(db.Model):
     __tablename__ = 'pitches'
 
     id = db.Column(db.Integer,primary_key=True)
-    pitch_review = db.Column(db.String)
+    pitch_title = db.Column(db.String)
+    pitch_content = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
+    def save_pitch(self):
+
+        '''
+        function saves pitches to database
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_pitches(cls,id):
+
+        '''
+        function queries database and returns pitch with given id
+        '''
+        pitches = Pitch.query.filter_by(id).all()
+        return pitches
 
