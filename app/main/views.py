@@ -1,7 +1,7 @@
 from flask import render_template,redirect,url_for,abort,request
 from . import main
 from ..models import User,Pitch
-from .forms import EditProfile
+from .forms import EditProfile,PitchForm
 from .. import db,photos
 from flask_login import login_required,current_user
 
@@ -67,3 +67,23 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
+@main.route('/pitch/new',methods=["GET","POST"])
+@login_required
+def new_pitch():
+
+    '''
+    function renders new_pitch template and form that users can use to create new pitch
+    '''
+    pitch_form = PitchForm()
+    if pitch_form.validate_on_submit():
+        title = pitch_form.title.data
+        pitch = pitch_form.pitch.data
+        category = pitch_form.category.data
+
+        new_pitch = Pitch(pitch_title=title,pitch_content=pitch,category=category,likes=0,dislikes=0,user=current_user)
+
+        new_pitch.save_pitch()
+        return redirect(url_for("main.index"))
+    
+    title="New Pitch"
+    return render_template('new_pitch.html',title=title,pitch_form=pitch_form)

@@ -77,6 +77,9 @@ class Pitch(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     pitch_title = db.Column(db.String)
     pitch_content = db.Column(db.String)
+    category = db.Column(db.String)
+    likes = db.Column(db.Integer)
+    dislikes = db.Column(db.Integer)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
@@ -89,11 +92,11 @@ class Pitch(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_pitches(cls,id):
+    def get_pitches(cls,category):
 
         '''
         function queries database and returns pitch with given id
         '''
-        pitches = Pitch.query.filter_by(id).all()
+        pitches = Pitch.query.filter_by(category=category).all()
         return pitches
 

@@ -15,7 +15,7 @@ class TestPitch(unittest.TestCase):
         function runs before every test case
         '''
         self.user_peaches = User(username="Peaches",password="geranimo",email="peaches@ms.com")
-        self.new_pitch = Pitch(id=1,pitch_title="Humanity's hope",pitch_content="The development of more stringent interaction measures in this globalized age offer the bests chance for human's survival",user=user_peaches)
+        self.new_pitch = Pitch(pitch_title="Humanity's hope",pitch_content="The development of more stringent interaction measures in this globalized age offer the bests chance for human's survival",category='humanity',user=user_peaches)
     
     def test_instance(self):
 
@@ -42,11 +42,11 @@ class TestPitch(unittest.TestCase):
         self.new_pitch.save_pitch()
         self.assertTrue(len(Pitch.query.all())>0)
     
-    def test_get_pitch(self):
+    def test_get_pitches(self):
 
         '''
         function checks if it is possible to get pitch using pitch's id
         '''
         self.new_pitch.save_pitch()
-        got_pitches = Pitch.get_pitches(1)
-        self.assertTrue(len(got_pitches) == 1)
+        got_pitches = Pitch.get_pitches('humanity')
+        self.assertTrue(len(got_pitches) == 'humanity')
