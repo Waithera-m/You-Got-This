@@ -2,8 +2,8 @@
 .vscode/
 
 # Byte-compiled / optimized / DLL files
-__pyache__/
-__pyache__
+__pycache__/
+__pycache__
 
 instance/
 
