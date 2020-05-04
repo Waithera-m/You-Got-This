@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -64,3 +65,16 @@ class Role(db.Model):
 
     def __repr__(self):
         return f'User {self.name}'
+
+class Pitch(db.Model):
+
+    '''
+    class facilitates the creation of pitch objects
+    '''
+    __tablename__ = 'pitches'
+
+    id = db.Column(db.Integer,primary_key=True)
+    pitch_review = db.Column(db.String)
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+

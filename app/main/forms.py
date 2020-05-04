@@ -10,3 +10,12 @@ class EditProfile(FlaskForm):
     '''
     bio = TextAreaField('Let the world know more about you',validators=[Required()])
     submit = SubmitField('Add Bio')
+
+class PitchForm(FlaskForm):
+
+    '''
+    class facilitates the creation of pitch form objects
+    '''
+    title = StringField('Pitch Title',validators=[Required()])
+    pitch = TextAreaField('Tell us more about your pitch',validators=[Required()])
+    submit = SubmitField('Share Pitch')
