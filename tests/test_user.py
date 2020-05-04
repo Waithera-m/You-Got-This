@@ -18,7 +18,7 @@ class UserClassTest(unittest.TestCase):
         '''
         function checks if user's password is hashed
         '''
-        self.assertTrue(self.new_user.password_secure is not None)
+        self.assertTrue(self.new_user.password_hash is not None)
     
     def test_no_access_password(self):
 

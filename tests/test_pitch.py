@@ -14,8 +14,15 @@ class TestPitch(unittest.TestCase):
         '''
         function runs before every test case
         '''
-        self.user_peaches = User(username="Peaches",password="geranimo",email="peaches@ms.com")
-        self.new_pitch = Pitch(pitch_title="Humanity's hope",pitch_content="The development of more stringent interaction measures in this globalized age offer the bests chance for human's survival",category='humanity',user=user_peaches)
+        self.user_peaches = User(username="peaches",password="geranimo",email="peaches@ms.com")
+        self.new_pitch = Pitch(id=1,pitch_title="Humanity's hope",pitch_content="The development of more stringent interaction measures in this globalized age offer the bests chance for human's survival",category="humanity",user=self.user_peaches)
+
+    def tearDown(self):
+        '''
+        function runs after every test
+        '''
+        Pitch.query.delete()
+        User.query.delete()
     
     def test_instance(self):
 
@@ -28,10 +35,11 @@ class TestPitch(unittest.TestCase):
 
         '''
         function checks if individual pitch properties are initialized properly
-        '''
-        self.assertEqual(self.new_pitch.id,1)
+        ''' 
+        self.assertEqual(self.new_pitch.id,1)       
         self.assertEqual(self.new_pitch.pitch_title,"Humanity's hope")
         self.assertEqual(self.new_pitch.pitch_content,"The development of more stringent interaction measures in this globalized age offer the bests chance for human's survival")
+        self.assertEqual(self.new_pitch.category,"humanity")
         self.assertEqual(self.new_pitch.user,self.user_peaches)
 
     def test_save_pitch(self):
@@ -48,5 +56,5 @@ class TestPitch(unittest.TestCase):
         function checks if it is possible to get pitch using pitch's id
         '''
         self.new_pitch.save_pitch()
-        got_pitches = Pitch.get_pitches('humanity')
-        self.assertTrue(len(got_pitches) == 'humanity')
+        got_pitches = Pitch.get_pitches(1)
+        self.assertTrue(len(got_pitches) == 1)

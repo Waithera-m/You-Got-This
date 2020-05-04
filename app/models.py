@@ -26,7 +26,7 @@ class User(db.Model,UserMixin):
     bio = db.Column(db.String(255))
     profile_photo_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
-    pitches = db.relationship('Pitch',backref='user',lazy='dynamics')
+    pitches = db.relationship('Pitch',backref='user',lazy="dynamic")
     
     @property
     def password(self):
@@ -62,7 +62,7 @@ class Role(db.Model):
     __tablename__='roles'
     id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(255))
-    users = db.relationship('User',backref='role',lazy='dynamic')
+    users = db.relationship('User',backref='role',lazy="dynamic")
 
     def __repr__(self):
         return f'User {self.name}'

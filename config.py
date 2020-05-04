@@ -6,7 +6,7 @@ class Config:
     Class facilitates the creation of config objects
     '''
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mary:pixie01@localhost/pitches'
+    
 
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
@@ -20,6 +20,7 @@ class DevConfig(Config):
     '''
     Class inherits general configurations from Config class
     '''
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mary:pixie01@localhost/pitches'
 
     DEBUG = True
 
@@ -30,7 +31,15 @@ class ProdConfig(Config):
     '''
     pass
 
+class TestConfig(Config):
+
+    '''
+    Class inherits general configurations from Config class  and facilitates the testing of class and database behavior
+    '''
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mary:pixie01@localhost/pitches_test'
+
 config_options = {
     'development':DevConfig,
-    'production':ProdConfig
+    'production':ProdConfig,
+    'test':TestConfig
 }
