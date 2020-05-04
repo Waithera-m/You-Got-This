@@ -18,5 +18,5 @@ class PitchForm(FlaskForm):
     '''
     title = StringField('Pitch Title',validators=[Required()])
     pitch = TextAreaField('Tell us more about your pitch',validators=[Required()])
-    category = TextAreaField('Indicate the category that best suits your pitch',validators=[Required()])
+    category = TextAreaField('Indicate the category that best suits your pitch: love, humanity, poverty, business',validators=[Required()])
     submit = SubmitField('Share Pitch')

@@ -2,12 +2,12 @@
     {% for pitch in pitches_list %}
         <div class="card">
             <div class="card-title">
-                <h4>{{pitch.pitch_title}}</h4>
+                <h4><strong>{{pitch.pitch_title}}</strong></h4>
                 
             </div>
             <div class="card-body">
                 <p>{{pitch.pitch_content}}</p>
-                <p>Added by: {{pitch.user.username}}</p>
+                <p>Added by: <i>{{pitch.user.username}}</i></p>
             </div>
         </div>
     {% endfor %}

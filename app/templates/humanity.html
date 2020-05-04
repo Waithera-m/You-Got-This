@@ -12,6 +12,13 @@
     <h1>Humanity Pitches</h1> 
 </div>
 <div class="container">
-    {{macro.displayPitches(pitches)}}
+    <div class="row">
+        <div class="col-md-8">
+            {{macro.displayPitches(humanity_pitches)}}
+        </div>
+        <div class="col-md-4">
+            <h1><a class="badge badge-dark" href="{{url_for('main.new_pitch')}}">Add Pitch</a></h1>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -82,6 +82,8 @@ def new_pitch():
 
         new_pitch = Pitch(pitch_title=title,pitch_content=pitch,category=category,likes=0,dislikes=0,user=current_user)
 
+    
+
         new_pitch.save_pitch()
         return redirect(url_for("main.index"))
     
@@ -94,9 +96,9 @@ def business():
     '''
     view function returns business.html and its contents
     '''
-    pitches = Pitch.get_pitches('business')
+    business_pitches = Pitch.get_pitches('business')
 
-    return render_template("business.html",pitches=pitches)
+    return render_template("business.html",business_pitches=business_pitches)
 
 @main.route('/pitches/poverty')
 def poverty():
@@ -104,9 +106,9 @@ def poverty():
     '''
     view function returns poverty.html and its contents
     '''
-    pitches = Pitch.get_pitches('poverty')
+    poverty_pitches = Pitch.get_pitches('poverty')
     
-    return render_template("poverty.html",pitches=pitches)
+    return render_template("poverty.html",poverty_pitches=poverty_pitches)
 
 @main.route('/pitches/love')
 def love():
@@ -114,9 +116,9 @@ def love():
     '''
     view function returns love template and its contents
     '''
-    pitches = Pitch.get_pitches('love')
+    love_pitches = Pitch.get_pitches('love')
 
-    return render_template("love.html",pitches=pitches)
+    return render_template("love.html",love_pitches=love_pitches)
 
 @main.route('/pitches/humanity')
 def humanity():
@@ -124,6 +126,6 @@ def humanity():
     '''
     view function returns humanity template and its contents
     '''
-    pitches = Pitch.get_pitches('humanity')
+    humanity_pitches = Pitch.get_pitches('humanity')
 
-    return render_template("humanity.html",pitches=pitches)
+    return render_template("humanity.html",humanity_pitches=humanity_pitches)
