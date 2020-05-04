@@ -50,11 +50,11 @@ class TestPitch(unittest.TestCase):
         self.new_pitch.save_pitch()
         self.assertTrue(len(Pitch.query.all())>0)
     
-    def test_get_pitches(self):
+    def test_get_pitch(self):
 
         '''
         function checks if it is possible to get pitch using pitch's id
         '''
-        self.new_pitch.save_pitch()
-        got_pitches = Pitch.get_pitches(1)
-        self.assertTrue(len(got_pitches) == 1)
+        self.new_pitch.save_pitch(self)
+        got_pitches = Pitch.get_pitch(1)
+        self.assertTrue(got_pitches is not None)

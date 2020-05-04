@@ -100,3 +100,12 @@ class Pitch(db.Model):
         pitches = Pitch.query.filter_by(category=category).all()
         return pitches
 
+    @classmethod
+    def get_pitch(cls,id):
+
+        '''
+        function queries database and returns pitch with given id
+        '''
+        pitches = Pitch.query.filter_by(id=id).all()
+        return pitches
+

@@ -87,3 +87,43 @@ def new_pitch():
     
     title="New Pitch"
     return render_template('new_pitch.html',title=title,pitch_form=pitch_form)
+
+@main.route('/pitches/business')
+def business():
+
+    '''
+    view function returns business.html and its contents
+    '''
+    pitches = Pitch.get_pitches('business')
+
+    return render_template("business.html",pitches=pitches)
+
+@main.route('/pitches/poverty')
+def poverty():
+
+    '''
+    view function returns poverty.html and its contents
+    '''
+    pitches = Pitch.get_pitches('poverty')
+    
+    return render_template("poverty.html",pitches=pitches)
+
+@main.route('/pitches/love')
+def love():
+
+    '''
+    view function returns love template and its contents
+    '''
+    pitches = Pitch.get_pitches('love')
+
+    return render_template("love.html",pitches=pitches)
+
+@main.route('/pitches/humanity')
+def humanity():
+
+    '''
+    view function returns humanity template and its contents
+    '''
+    pitches = Pitch.get_pitches('humanity')
+
+    return render_template("humanity.html",pitches=pitches)
