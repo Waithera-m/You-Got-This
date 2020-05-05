@@ -174,6 +174,8 @@ def pitch(id):
         new_comment = Comment(comment=comment,user=user,pitch_id=pitch_id)
 
         new_comment.save_comment()
+
+        return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
     
     comments = Comment.get_comments(pitch_id)
 
