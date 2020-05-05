@@ -18,6 +18,7 @@
                 <hr>
                 <p>{{pitch.pitch_content}}</p>
                 <hr>
+                {% if current_user.is_authenticated %}
                 <span class="fa-stack fa-lg">
                     <a href="/pitch/{{pitch.id}}?like=1">
                         <i class="fa fa-thumbs-up"></i>
@@ -27,19 +28,28 @@
                         <i class="fa fa-thumbs-down"></i>
                     </a>{{pitch.dislikes}} 
                 </span>
+                {% else %}
+                <p><i class="fa fa-thumbs-down"></i> You have to sign in to vote</p>
+                {% endif %}
                 <hr>
             </div>
             <div style="margin-top: 40px;">
                 <h3><strong>Comments</strong></h3>
                 <hr>
+                
                 {{macro.displayUsersComments(comments)}}
+                
             </div>
             
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-5">
             <div style="margin-top: 50px;">
+                {% if current_user.is_authenticated %}
                 {{wtf.quick_form(comment_form)}}
+                {% else %}
+                <p><i class="fa fa-comment"></i> You have to sign in to comment</p>
+                {% endif %}
             </div>
         </div>
     </div>
