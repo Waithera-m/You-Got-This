@@ -127,5 +127,33 @@ def humanity():
     view function returns humanity template and its contents
     '''
     humanity_pitches = Pitch.get_pitches('humanity')
+    
 
     return render_template("humanity.html",humanity_pitches=humanity_pitches)
+
+@main.route('/pitch/<int:id>',methods=["GET","POST"])
+def pitch(id):
+
+    '''
+    view function returns single pithc
+    '''
+    pitch = Pitch.get_pitch(id)
+    
+    pitch_id = pitch.id
+    
+
+    if request.args.get("like"):
+        pitch.likes = pitch.likes +  1
+
+        db.session.add(pitch)
+        db.session.commit()
+
+        return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
+
+    if request.args.get("dislike"):
+        pitch.dislikes = pitch.dislikes + 1
+        return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
+
+    return render_template("pitch.html",pitch=pitch)
+
+

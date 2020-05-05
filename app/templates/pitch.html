@@ -9,17 +9,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="jumbotron">
-    <h1>Love Pitches</h1> 
-</div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            {{macro.displayPitches(love_pitches)}}
-        </div>
-        <div class="col-md-4">
-            <h1><a class="btn btn-primary" href="{{url_for('main.new_pitch')}}">Add Pitch</a></h1>
-        </div>
-    </div>
+    
+    <h2>{{pitch.pitch_title}}</h2>
+    <p>{{pitch.pitch_content}}</p>
+    <a href="/pitch/{{pitch.id}}?like=1">
+        <i class="far fa-thumbs-up"></i></a>{{pitch.likes}} 
+    <a href="/pitch/{{pitch.id}}?dislike=1">
+        <i class="far fa-thumbs-down"></i></a>{{pitch.dislikes}}  
+       
+    
+    
 </div>
 {% endblock %}

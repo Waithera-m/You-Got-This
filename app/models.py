@@ -106,6 +106,6 @@ class Pitch(db.Model):
         '''
         function queries database and returns pitch with given id
         '''
-        pitches = Pitch.query.filter_by(id=id).all()
-        return pitches
+        pitch = Pitch.query.filter_by(id=id).first()
+        return pitch
 
