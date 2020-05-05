@@ -20,3 +20,11 @@ class PitchForm(FlaskForm):
     pitch = TextAreaField('Tell us more about your pitch',validators=[Required()])
     category = TextAreaField('Indicate the category that best suits your pitch: love, humanity, poverty, business',validators=[Required()])
     submit = SubmitField('Share Pitch')
+
+class CommentsForm(FlaskForm):
+
+    '''
+    class facilitates the creation of comment properties
+    '''
+    comment = TextAreaField('Comment:')
+    submit = SubmitField('Add Comment')

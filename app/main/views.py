@@ -1,7 +1,7 @@
 from flask import render_template,redirect,url_for,abort,request
 from . import main
-from ..models import User,Pitch
-from .forms import EditProfile,PitchForm
+from ..models import User,Pitch,Comment
+from .forms import EditProfile,PitchForm,CommentsForm
 from .. import db,photos
 from flask_login import login_required,current_user
 
@@ -138,6 +138,8 @@ def pitch(id):
     '''
     view function returns single pithc
     '''
+    comment_form = CommentsForm()
+
     pitch = Pitch.get_pitch(id)
     
     pitch_id = pitch.id
@@ -158,8 +160,25 @@ def pitch(id):
         db.session.commit()
 
         return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
+    
+    
 
-    return render_template("pitch.html",pitch=pitch)
+    if comment_form.validate_on_submit():
+
+        comment=comment_form.comment.data
+
+        print(comment)
+
+        user = current_user
+
+        new_comment = Comment(comment=comment,user=user,pitch_id=pitch_id)
+
+        new_comment.save_comment()
+    
+    comments = Comment.get_comments(pitch_id)
+
+    return render_template("pitch.html",pitch=pitch,comment_form=comment_form,user=current_user,comments=comments)
+
 
 @main.route('/user/<uname>/pitches')
 def registered_pitches(uname):
@@ -173,7 +192,6 @@ def registered_pitches(uname):
     user = User.query.filter_by(username=uname).first()
     
     pitches = Pitch.query.filter_by(user_id=user.id).all()
-   
 
     return render_template("profile/pitches.html",user=user,pitches=pitches)
 

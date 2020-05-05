@@ -27,6 +27,7 @@ class User(db.Model,UserMixin):
     profile_photo_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
     pitches = db.relationship('Pitch',backref='user',lazy="dynamic")
+    comments = db.relationship('Comment',backref='user',lazy="dynamic")
     
     @property
     def password(self):
@@ -108,4 +109,36 @@ class Pitch(db.Model):
         '''
         pitch = Pitch.query.filter_by(id=id).first()
         return pitch
+    
+class Comment(db.Model):
+
+    '''
+    class facilitates the creation of comment objects
+    '''
+
+    __tablename__ = "comments"
+
+    id = db.Column(db.Integer,primary_key=True)
+    comment = db.Column(db.String)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    pitch_id = db.Column(db.Integer,db.ForeignKey("pitches.id"))
+
+    def save_comment(self):
+
+        '''
+        function saves form input to the database
+        '''
+        db.session.add(self)
+        db.session.commit()
+    
+    @classmethod
+    def get_comments(cls,pitch_id):
+
+        '''
+        function retrieves saved comments
+        '''
+        comments = Comment.query.filter_by(pitch_id=pitch_id).all()
+
+        return comments
+
 

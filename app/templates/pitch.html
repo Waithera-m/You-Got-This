@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macro %}
+{% import 'bootstrap/wtf.html' as wtf%}
 
 {% block styles %}
     {{super()}}
@@ -11,7 +12,7 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
                 <h2>{{pitch.pitch_title}}</h2>
                 <hr>
@@ -26,6 +27,13 @@
                         <i class="fa fa-thumbs-down"></i>
                     </a>{{pitch.dislikes}} 
                 </span>
+                
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <div style="margin-top: 50px;">
+                {{wtf.quick_form(comment_form)}}
             </div>
         </div>
     </div>
