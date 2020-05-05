@@ -131,6 +131,7 @@ def humanity():
 
     return render_template("humanity.html",humanity_pitches=humanity_pitches)
 
+
 @main.route('/pitch/<int:id>',methods=["GET","POST"])
 def pitch(id):
 
@@ -141,7 +142,7 @@ def pitch(id):
     
     pitch_id = pitch.id
     
-
+    
     if request.args.get("like"):
         pitch.likes = pitch.likes +  1
 
@@ -155,9 +156,25 @@ def pitch(id):
 
         db.session.add(pitch)
         db.session.commit()
-        
+
         return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
 
     return render_template("pitch.html",pitch=pitch)
+
+@main.route('/user/<uname>/pitches')
+def registered_pitches(uname):
+     
+    
+
+    '''
+    view function returns pitches submitted by a specific user
+    '''
+    
+    user = User.query.filter_by(username=uname).first()
+    
+    pitches = Pitch.query.filter_by(user_id=user.id).all()
+   
+
+    return render_template("profile/pitches.html",user=user,pitches=pitches)
 
 
