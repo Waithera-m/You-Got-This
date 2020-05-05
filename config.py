@@ -29,7 +29,7 @@ class ProdConfig(Config):
     '''
     Class inherits general configurations from Config class
     '''
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 class TestConfig(Config):
 
