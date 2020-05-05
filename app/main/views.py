@@ -150,8 +150,12 @@ def pitch(id):
 
         return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
 
-    if request.args.get("dislike"):
+    elif request.args.get("dislike"):
         pitch.dislikes = pitch.dislikes + 1
+
+        db.session.add(pitch)
+        db.session.commit()
+        
         return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
 
     return render_template("pitch.html",pitch=pitch)

@@ -10,15 +10,24 @@
 
 {% block content %}
 <div class="container">
-    
-    <h2>{{pitch.pitch_title}}</h2>
-    <p>{{pitch.pitch_content}}</p>
-    <a href="/pitch/{{pitch.id}}?like=1">
-        <i class="far fa-thumbs-up"></i></a>{{pitch.likes}} 
-    <a href="/pitch/{{pitch.id}}?dislike=1">
-        <i class="far fa-thumbs-down"></i></a>{{pitch.dislikes}}  
-       
-    
-    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <h2>{{pitch.pitch_title}}</h2>
+                <hr>
+                <p>{{pitch.pitch_content}}</p>
+                <hr>
+                <span class="fa-stack fa-lg">
+                    <a href="/pitch/{{pitch.id}}?like=1">
+                        <i class="fa fa-thumbs-up"></i>
+                    </a>{{pitch.likes}} 
+                    
+                    <a href="/pitch/{{pitch.id}}?dislike=1">
+                        <i class="fa fa-thumbs-down"></i>
+                    </a>{{pitch.dislikes}} 
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
