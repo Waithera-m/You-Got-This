@@ -1,11 +1,11 @@
 # You Got This
-#### The web application allows users to view,add,vote on, and comment on one minute pitches, May 5, 2020 
+#### The web application allows users to view, add, vote on, and comment on one minute pitches, May 5, 2020 
 #### By **Waithera-m**
 ## Description
-You Got This is a simple flask application that  allows users to view, vote and comment on pitches.source specific articles. Users can also use provided links to add new pitches in different categories.
+You Got This is a simple flask application that  allows users to view, vote and comment on pitches. Users can also use provided links to add new pitches in different categories.
 
 ## Setup/Installation Requirements
-To use the application, users need internet access and web browsers, preferably  Chrome, Safari, and Firefox.
+To use the application, users need internet access and web browsers, preferably  Chrome, Safari, and Firefox. Users also need an authenticated account to access comment, vote, and add pitch features.
 ## Set-Up a Local Project
 ### Prerequisites
 * Python version 3.6 or later
@@ -15,32 +15,37 @@ To use the application, users need internet access and web browsers, preferably 
 * flask-login
 * flask-wtf
 * flask-mail
-* flask-sqlaclchemy
+* flask-sqlalchemy
+* postgresql account and database
 
 To set up a local project:
 * Fork the repository
 * Clone the repository using the git clone command
 * Activate a virtual environment
-* Install all required prerequisites
+* Install all prerequisites
 ## Known Bugs
 * None at the moment.
 ## Behavior Driven Development (BDD)
+### Landing Page
 ![image](https://user-images.githubusercontent.com/60571734/81081782-0af53900-8efb-11ea-8e6d-7ba16dda813f.png)
 
+### Category View
 ![image](https://user-images.githubusercontent.com/60571734/81085746-49d9bd80-8f00-11ea-80bc-92323033be6a.png)
 
+### Pitch View
 ![image](https://user-images.githubusercontent.com/60571734/81085899-7a215c00-8f00-11ea-8967-a49083eb7254.png)
 
+### Profile View
 ![image](https://user-images.githubusercontent.com/60571734/81086008-99b88480-8f00-11ea-9dc2-071da33479db.png)
 
 |Behavior                |Input                            |Output                             |
 |------------------------|----------------------------------|----------------------------------|
 |The landing page loads |Users scroll | Users see sample pitches and links to different categories|
 |The landing page loads|Users click on videos|Sample pitches videos play|
-|Source page loads|Users click on category links in navbar|Users are directed to views that display different categories of pitches|
-|The landing page loads|Users click on sign in button|Users are directed to sign in/ register view, users sign in if they have an account or click on sign up link to create an account|
-|The landing page loads|Users click on profile navbar link|Users see they profiles and option to edit or upload profile image|
-|The category view loads|Users see added pitches, add pitch and vote and comment buttons|Users click on add pitch button and if they are authenticated are directed to add pith form; users click on vote and comment button and if authenticated get to vote and comment on added pitches|
+|The landing page loads|Users click on category links in navbar|Users are directed to views that display different categories of pitches|
+|The landing page loads|Users click on sign in button|Users are directed to sign in/ register view, users sign in if they have an account or click on the sign up link to create an account|
+|The landing page loads|Users click on profile navbar link|Users see they profiles and options to edit or upload profile image|
+|The category view loads|Users see added pitches, add pitch and vote and comment buttons|Users click on add pitch button and if they are authenticated are directed to add pitch form; users click on vote and comment button and if authenticated get to vote and comment on added pitches|
 |The landing page loads|Users click on sign out link in the navbar|Users are logged out|
 ## Technologies Used
 * HTML - HTML dictates the structure of webpages.
